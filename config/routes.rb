@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :events, only: [ :index, :new, :create ]
+  root "events#index"
+  resources :events, only: [ :index, :show, :new, :create ]
   resources :users, only: [ :show ]
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -13,5 +14,4 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  root "events#index"
 end
