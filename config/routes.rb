@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get "attendances/create"
+  get "attendances/update"
+  get "attendances/destroy"
   root "events#index"
   resources :events, only: [ :index, :show, :new, :create ] do 
     resources :attendances, only: [ :create, :update, :destroy ]
