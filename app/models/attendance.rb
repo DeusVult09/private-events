@@ -4,5 +4,5 @@ class Attendance < ApplicationRecord
 
   has_many :statuses
 
-  enum :status, { pending: 0, accepted: 1, declined: 2}
+  enum :status, { pending: 0, accepted: 1, declined: 2 }
 end
