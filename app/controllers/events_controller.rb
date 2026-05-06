@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all
+    @upcoming_events = Event.upcoming.all
+    @past_events = Event.past.all
   end
 
   def show
@@ -12,10 +13,10 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = current_user.attended_events.build(event_params)
+    @event = current_user.created_events.build(event_params)
 
     if @event.save
-      redirect_to events_path
+      redirect_to @event
     else
       render :new, status: :unprocessable_entity
     end
