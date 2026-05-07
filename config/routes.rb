@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get "attendances/update"
   get "attendances/destroy"
   root "events#index"
-  resources :events, only: [ :index, :show, :new, :edit, :create ] do 
+  resources :events, only: [ :index, :show, :new, :edit, :create, :update ] do 
     resources :attendances, only: [ :create, :update, :destroy ]
   end
   resources :users, only: [ :show ]
