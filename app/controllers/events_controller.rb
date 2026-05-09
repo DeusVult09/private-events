@@ -38,6 +38,10 @@ class EventsController < ApplicationController
     end
   end
 
+  def destroy 
+    @event = Event.find(params[:id]).destroy
+  end
+
   private
   def event_params
     params.expect(event: [:name, :location, :description, :date]) 
