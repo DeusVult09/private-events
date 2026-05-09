@@ -1,6 +1,11 @@
+<div class="event-box">
+    <h2>Upcoming Events</h2>
+    <%= render @upcoming_events %>
+    <%= button_to, "Details", @event %>  
+</div>
 
-<h2>Upcoming Events</h2>
-<%= render @upcoming_events %>
-
-<h2>Past Events</h2>
-<%= render @past_events %>
+<div class="event-box">
+    <h2>Past Events</h2>
+    <%= render @past_events %>
+    <%= button_to, "Details", @event %>
+</div>
