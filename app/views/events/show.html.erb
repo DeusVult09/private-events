@@ -1,2 +1,9 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+
+<div class="display-card">
+    <h2><%= @event.name %></h2>
+    <h3>Description: <%= @event.description %></h3>
+    <p>Date: <%= @event.date %></p>
+    <p>Location: <%= @event.location %></p>
+    <%= link_to "Back to Events", events_path %>
+</div>
+
