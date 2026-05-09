@@ -1,9 +1,17 @@
 
 <div class="display-card">
     <h2><%= @event.name %></h2>
-    <h3>Description: <%= @event.description %></h3>
-    <p>Date: <%= @event.date %></p>
-    <p>Location: <%= @event.location %></p>
+
+    <h3>Description:</h3>
+    <p><%= @event.date %></p>
+
+    <h3>Date:</h3>
+    <p><%= @event.date %></p>
+
+    <h3>Location:</h3>
+    <p>@event.location</p>
+
     <%= link_to "Back to Events", events_path %>
+    
 </div>
 
