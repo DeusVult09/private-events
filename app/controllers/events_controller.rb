@@ -42,7 +42,7 @@ class EventsController < ApplicationController
     @event.destroy
 
     head :no_content
-    format.html { redirect_to events_url, status: :see_other, notice: "Event was successfully deleted." }
+    format.html { redirect_to events_url, status: :see_other, notice: "Event was successfully deleted" }
   end
 
   private
