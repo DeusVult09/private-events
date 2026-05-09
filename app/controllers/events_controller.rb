@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[show edit update]
+  before_action :set_event, only: %i[show edit update destroy]
 
   def set_event
     @event = Event.find(params[:id])
@@ -39,7 +39,10 @@ class EventsController < ApplicationController
   end
 
   def destroy 
-    @event = Event.find(params[:id]).destroy
+    @event.destroy
+
+    head :no_content
+    format.html { redirect_to events_url, status: :see_other, notice: "Event was successfully deleted." }
   end
 
   private
