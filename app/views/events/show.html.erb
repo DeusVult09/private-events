@@ -11,10 +11,10 @@
     <h3>Location:</h3>
     <p><%= @event.location %></p>
 
-    <%= link_to "Back to Events", events_path %>
+    <%= link_to "Back to Events", events_path %><br>
 
     <%= if @event.creator == current_user %>
-       <%= link_to "Edit", edit_event_path(@event) %>
+       <%= link_to "Edit", edit_event_path(@event) %><br>
     <% end %>
 
     <% if @event.creator == current_user %>
