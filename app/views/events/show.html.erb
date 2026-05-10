@@ -12,7 +12,11 @@
     <p>@event.location</p>
 
     <%= link_to "Back to Events", events_path %>
-    
+
+    <%= if @even.creator == current_user %>
+      <%= link_to "Edit", edit_event_path(@event) %>
+    <% end %>
+
     <% if @event.creator == current_user %>
       <%= button_to "Delete Event",
       @event, method: :delete, 
