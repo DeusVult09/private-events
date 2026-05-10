@@ -1,8 +1,13 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
+  before_action :authorize_user, only: %i[edit update destroy]
 
   def set_event
     @event = Event.find(params[:id])
+  end
+
+  def authorize_user
+    head :forbidden unless @event.creator == current_user
   end
 
   def index
