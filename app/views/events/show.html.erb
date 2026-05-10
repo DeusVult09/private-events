@@ -3,24 +3,25 @@
     <h2><%= @event.name %></h2>
 
     <h3>Description:</h3>
-    <p><%= @event.date %></p>
+    <p><%= @event.description %></p>
 
     <h3>Date:</h3>
     <p><%= @event.date %></p>
 
     <h3>Location:</h3>
-    <p>@event.location</p>
+    <p><%= @event.location %></p>
 
     <%= link_to "Back to Events", events_path %>
 
-    <%= if @even.creator == current_user %>
-      <%= link_to "Edit", edit_event_path(@event) %>
+    <%= if @event.creator == current_user %>
+       <%= link_to "Edit", edit_event_path(@event) %>
     <% end %>
 
     <% if @event.creator == current_user %>
       <%= button_to "Delete Event",
-      @event, method: :delete, 
-      form: { data: { turbo_confirm: Are you sure? } } %>
+      @event, 
+      method: :delete, 
+      form: { data: { turbo_confirm: "Are you sure?" } } %>
     <% end %>
 </div>
 
