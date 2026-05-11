@@ -1,8 +1,14 @@
 class AttendancesController < ApplicationController
-  before_action :set_event, only: %i[create update destroy]
+  before_action :authenticate_user!
+  before_action :set_event, only: [:create]
+  before_action :set_attendance, only: [:update, :destroy]
 
   def set_event
     @event = Event.find(params[:id])
+  end
+
+  def set_attendance
+    @attendance = Attendance.find(params[:id])
   end
 
   def create
@@ -10,7 +16,7 @@ class AttendancesController < ApplicationController
   
     if @attendance.save
       redirect_to event_attendances_path(@event), notice: "You are attending this event!"
-      @event.status = "pending"
+      @attendance.status = "pending"
     else
       render event_attendances_path(@event), alert: "Something went wrong!"
     end
