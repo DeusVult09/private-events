@@ -19,15 +19,18 @@ class AttendancesController < ApplicationController
 
   def update
     if @attendance.update(attendance_params)
-      redirect_to @event
+      redirect_to event_attendances_path(@path)
     else
-      render :edit, status: :unprocessable_entity
+      render :, status: :unprocessable_entity
     end
   end
 
   def destroy
-  end
+    @attendance.destroy
 
+    redirect_to user_path(@user), notice: "Attendance record was successfully removed!"
+  end
+  
   private
 
   def attendance_params
