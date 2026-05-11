@@ -2,5 +2,5 @@
 <div class="event-card">
     <h3><%= event.name %></h3>
     <p><%= event.date %></p>
-    <%= button_to "Details", event %>
+    <%= link_to "Details", event_path(event) %>
 </div>
