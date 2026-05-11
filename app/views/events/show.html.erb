@@ -13,11 +13,12 @@
 
     <%= link_to "Back to Events", events_path %><br>
 
-    <%= if @event.creator == current_user %>
-       <%= link_to "Edit", edit_event_path(@event) %><br>
-    <% end %>
+    <% unless @event.attendees.exists?(current_user.id) %>
+       <%= button_to "Attend Event", event_attendances_path(@event), method: :post %>
+    <% end %><br>
 
     <% if @event.creator == current_user %>
+      <%= link_to "Edit", edit_event_path(@event) %>
       <%= button_to "Delete Event",
       @event, 
       method: :delete, 
