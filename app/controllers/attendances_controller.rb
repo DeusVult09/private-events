@@ -4,7 +4,7 @@ class AttendancesController < ApplicationController
   before_action :set_attendance, only: [:update, :destroy]
 
   def set_event
-    @event = Event.find(params[:id])
+    @event = Event.find(params[:event_id])
   end
 
   def set_attendance
