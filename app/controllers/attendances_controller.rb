@@ -9,15 +9,20 @@ class AttendancesController < ApplicationController
     @attendance = @event.attendances.build(attendance_params)
   
     if @attendance.save
-      redirect_to @event, notice: "You are attending this event!"
+      redirect_to event_attendances_path(@event), notice: "You are attending this event!"
+      @event.status = "pending"
     else
-      render @event, alert: "Something went wrong!"
+      render event_attendances_path(@event), alert: "Something went wrong!"
     end
   end
 
 
   def update
-    
+    if @attendance.update(attendance_params)
+      redirect_to @event
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
