@@ -1,8 +1,36 @@
 class AttendancesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_event, only: [:create]
-  before_action :set_attendance, only: [:update, :destroy]
+  before_action :set_attendance, only: [:accept, :decline, :destroy]
 
+  def create
+    @attendance = @event.attendances.build(attendee: current_user, status: :pending)
+  
+    if @attendance.save
+      redirect_to user_path(current_user), notice: "You are attending this event!"
+    else
+      redirect_to user_path(current_user), alert: "Something went wrong!"
+    end
+  end
+
+  def accept
+    if @attendance.update(status: :accepted)
+      redirect_to user_path(current_user), notice: "Accepted"
+    end
+  end
+
+  def decline
+    if @attendance.update(status: :declined)
+      redirect_to user_path(current_user), notice: "Declined"
+    end
+  end
+
+  def destroy
+    @attendance.destroy
+    redirect_to user_path(current_user), notice: "Attendance record was successfully removed!"
+  end
+
+  private
   def set_event
     @event = Event.find(params[:event_id])
   end
@@ -10,41 +38,5 @@ class AttendancesController < ApplicationController
   def set_attendance
     @attendance = Attendance.find(params[:id])
   end
-
-  def create
-    @attendance = @event.attendances.build(attendance_params)
-  
-    if @attendance.save
-      redirect_to event_attendances_path(@event), notice: "You are attending this event!"
-      @attendance.status = "pending"
-    else
-      render event_attendances_path(@event), alert: "Something went wrong!"
-    end
-  end
-
-
-  def update
-    if @attendance.update(attendance_params)
-      redirect_to event_attendances_path(@path)
-    else
-      render :, status: :unprocessable_entity
-    end
-  end
-
-  def destroy
-    @attendance.destroy
-
-    redirect_to user_path(@user), notice: "Attendance record was successfully removed!"
-  end
-  
-  private
-
-  def attendance_params
-    params.expect(attendance: [ :attendee, :event, :status ]) 
-  end
-
-  #def attendance_params
-    #params.require(:attendance).permit(:attendee, :event, :status)
-  #end
 
 end
