@@ -1,1 +1,13 @@
-div.
+<div class="created-events">
+    <h2>My Created Events</h2><br>
+    <%= render @created_events %> |
+
+    <h3>Pending Requests</h3>
+    <p><% event.attendances do |event|
+        if event.status == pending 
+        <%= attendee.name button_to "Accept", @event.status, method: :update %>
+        <%= button_to "Decline", @event.status, method: :update %>
+        <% end %>
+    </p>
+
+</div>
