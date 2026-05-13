@@ -3,14 +3,15 @@
     <%= render @created_events %> |
 
     <h3>Pending Requests</h3>
-    <p><% current_user.created_events.each do |event|
-        <% event.attendances.each do |attendance| %>
-          <% if attendance.status == "pending" %>
-            <%= attendance.attendee.name %>
-            <%= button_to "Accept", user_path(current_user), method: :update %>
-            <%= button_to "Decline", user_path(current_user), method: :update %>
+    <p><% current_user.created_events.each do |event| %>
+         <% event.attendances.each do |attendance| %>
+           <% if attendance.status == "pending" %>
+             <%= attendance.attendee.name %>
+             <%= button_to "Accept", user_path(current_user), method: :update %>
+             <%= button_to "Decline", user_path(current_user), method: :update %>
            <% end %>
-        <% end %>
+         <% end %>
+       <% end %>
     </p>
 
 </div>
