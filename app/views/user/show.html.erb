@@ -1,22 +1,43 @@
+
 <div class="events-container">
-    <div class="created-events">
-        <h2>My Created Events</h2><br>
-        <%= render @created_events %> 
+  <div class="created-events">
+    <h2>My Created Events</h2><br>
 
-        <h3>Pending Requests</h3>
-        <p><% current_user.created_events.each do |event| %>
-                <% event.attendances.each do |attendance| %>
-                    <% if attendance.status == "pending" %>
-                        <%= attendance.attendee.name %>
-                        <%= button_to "Accept", accept_attendance_path(attendance), method: :patch %>
-                        <%= button_to "Decline", decline_attendance_path(attendance), method: :patch %>
-                    <% end %>
-                <% end %>
+    <% current_user.created_events.each do |event| %>
+
+      <div class="event-card">
+        <h3><%= event.name %></h3><br>
+
+        <div class="event-links">
+          <%= link_to "Details", event_path(event) %>
+        </div><br>
+
+        <div class="pending-requests">
+          <h4>Pending Requests</h4><br>
+
+          <% pending_found = false %>
+
+          <% event.attendances.each do |attendance| %>
+            <% if attendance.status == "pending" %>
+              <% pending_found = true %>
+
+              <div class="attendance-request">
+                <span class="attendee-name">
+                  <strong><%= attendance.attendee.name %></strong>
+                </span>
+                <div class="attendance-buttons">
+                  <%= button_to "Accept", accept_attendance_path(attendance), method: :patch %>
+                  <%= button_to "Decline", decline_attendance_path(attendance),method: :patch %>
+                </div>
+              </div>
             <% end %>
-        </p> 
-    </div> 
+          <% end %>
 
-    <div class="upcoming-events">
-
-    </div>
+          <% unless pending_found %>
+            <p>No pending requests.</p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
