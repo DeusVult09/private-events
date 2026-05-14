@@ -3,7 +3,7 @@
   <div class="created-events">
     <h2>My Created Events</h2><br>
 
-    <% current_user.created_events.each do |event| %>
+    <% @created_events.each do |event| %>
 
       <div class="event-card">
         <h3><%= event.name %></h3><br>
