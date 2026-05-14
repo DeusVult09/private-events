@@ -2,6 +2,18 @@ class AttendancesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_event, only: [:create]
   before_action :set_attendance, only: [:accept, :decline, :destroy]
+  before_action :authorize_creator, only: %i[accept decline]
+  before_action :authorize_attendee, only: %i[destroy]
+
+
+  def authorize_creator
+    head :forbidden unless @attendance.event.creator == current_user
+  end
+
+  def authorize_attendee
+    head :forbidden unless @attendance.attendee == current_user
+  end
+
 
   def create
     @attendance = @event.attendances.build(attendee: current_user, status: :pending)
