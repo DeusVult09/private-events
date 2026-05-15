@@ -11,6 +11,8 @@
     <h3>Location:</h3>
     <p><%= @event.location %></p>
 
+    <h3>Created by:</h3>
+    <p><%= @event.creator.name %></p>
     <%= link_to "Back to Events", events_path %><br>
 
     <% unless @event.attendees.exists?(current_user.id) %>
