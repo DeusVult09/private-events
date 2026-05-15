@@ -1,49 +1,35 @@
-
 <div class="events-container">
-  <div class="created-events">
-    <h2>My Created Events</h2><br>
+    <div class="created-events">
+        <h2>My Created Events</h2><br>
 
-    <% @created_events.each do |event| %>
+        <% @created_events.each do |event| %>
+            <div class="event-card">
+                <h3><%= event.name %></h3><br>
+            </div>
 
-      <div class="event-card">
-        <h3><%= event.name %></h3><br>
+            <div class="event-links">
+                <%= link_to "Details" , event_path(event) %>
+            </div><br>
 
-        <div class="event-links">
-          <%= link_to "Details", event_path(event) %>
-        </div><br>
+            <div class="pending-requests">
+                <h4>Pending Requests</h4><br>
 
-        <div class="pending-requests">
-          <h4>Pending Requests</h4><br>
-
-          <% pending_found = false %>
-
-          <% event.attendances.each do |attendance| %>
-            <% if attendance.status == "pending" %>
-              <% pending_found = true %>
-
-              <div class="attendance-request">
-                <span class="attendee-name">
-                  <strong><%= attendance.attendee.name %></strong>
-                </span>
-                <div class="attendance-buttons">
-                  <%= button_to "Accept", accept_attendance_path(attendance), method: :patch %>
-                  <%= button_to "Decline", decline_attendance_path(attendance),method: :patch %>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
-
-          <% unless pending_found %>
-            <p>No pending requests.</p>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="upcoming-events">
-    <h2>My Upcoming Events</h2><br>
-
-    
-  </div>
+                <% if event.attendances.pending.any? %>
+                    <% event.attendances.pending.each do |attendance| %>
+                        <div class="attendance-request">
+                            <strong><%= attendance.attendee.name %></strong>
+                        </div>
+                        <div class="attendance-buttons">
+                            <%= button_to "Accept" , accept_attendance_path(attendance), method: :patch %>
+                            <%= button_to "Decline" , decline_attendance_path(attendance),method: :patch %>
+                        </div>
+                    <% end %>    
+                <% else %>
+                    <p>No pending requests</p>
+                <% end %>
+            </div>
+        <% end %>
+    <div class="upcoming-events">
+        <h2>My Upcoming Events</h2><br>
+    </div>
 </div>
