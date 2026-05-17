@@ -17,6 +17,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @attendance = event.attendances.find_by(attendee: current_user)
   end
 
   def new
@@ -49,6 +50,7 @@ class EventsController < ApplicationController
 
     redirect_to events_path, notice: "Event was successfully deleted"
   end
+
 
   private
   def event_params

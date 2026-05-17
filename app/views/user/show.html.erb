@@ -52,9 +52,9 @@
             </div><br>
 
             <div class="delete-container">
-                <% event.attendances.upcoming.each do |attendance| %>
-                    <%= button_to "Cancel Attendance", destroy_attendance_path(attendance), method: :delete %>
-                <% end %>
+                  <% if attendance >
+                    <%= button_to "Cancel Attendance", attendance_path(attendance), method: :delete %>
+                  <% end %>
             </div>
         <% end %>
     </div><br>
