@@ -44,8 +44,11 @@
 
             <div class="status-box">
                 <h3>Status:</h3>
-                <% current_user.attendances.each do | attendance | %>
-                <%= attendance.status %>
+                <% event.attendances.each do | attendance | %>
+                  <% if attendance.attendee_id == current_user.id %>
+                    <%= attendance.status %>
+                  <% end %>>
+                <% end %>
             </div><br>
 
             <div class="delete-container">
