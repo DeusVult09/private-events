@@ -17,7 +17,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @attendance = event.attendances.find_by(attendee: current_user)
+    @attendance = @event.attendances.find_by(attendee: current_user)
   end
 
   def new

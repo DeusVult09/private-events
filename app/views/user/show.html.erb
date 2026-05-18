@@ -52,12 +52,14 @@
             </div><br>
 
             <div class="delete-container">
-                  <% if attendance >
+                  <% if @attendance %>
                     <%= button_to "Cancel Attendance", attendance_path(attendance), method: :delete %>
                   <% end %>
             </div>
         <% end %>
     </div><br>
+
+
 
 
 </div>

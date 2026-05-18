@@ -15,6 +15,5 @@ class UserController < ApplicationController
     @pending_event = Event.joins(attendances)
     .where(attendances: { attendee_id: current_user.id })
 
-    @
   end
 end
