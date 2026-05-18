@@ -1,0 +1,19 @@
+<div class="event-card">
+    <h3><%= event.name %></h3>
+</div>
+
+<div class="event-links">
+    <%= link_to "Details", event_path(event) %>
+</div>
+
+<div class="status-container">
+    <h3>Status:</h3>
+    <% attendance = current_user.attendances.find_by(event: event) %>
+      <% if attendance.present? %>
+        <div class="status-show">
+            <%= attendance.status %>
+        </div>
+      <% else %>
+        <p><%= "No attendance record for this event" %></p>
+      <% end %>
+</div>
