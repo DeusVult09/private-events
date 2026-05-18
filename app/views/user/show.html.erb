@@ -30,6 +30,7 @@
             </div>
         <% end %>
     </div>
+
     <div class="upcoming-events">
         <h2>My Upcoming Events</h2><br>
 
@@ -42,19 +43,18 @@
                 <%= link_to "Details", event_path(event) %>
             </div><br>
 
-            <div class="status-box">
+            <div class="status-delete">
                 <h3>Status:</h3>
                 <% event.attendances.each do | attendance | %>
                   <% if attendance.attendee_id == current_user.id %>
-                    <%= attendance.status %>
-                  <% end %>>
-                <% end %>
-            </div><br>
-
-            <div class="delete-container">
-                  <% if @attendance %>
-                    <%= button_to "Cancel Attendance", attendance_path(attendance), method: :delete %>
+                    <div class="status-container">
+                        <%= attendance.status %>
+                    </div><br>
+                    <div class="delete-container">
+                        <%= button_to "Cancel Attendance", attendance_path(attendance), method: :delete %>
+                    </div>
                   <% end %>
+                <% end %>
             </div>
         <% end %>
     </div><br>
