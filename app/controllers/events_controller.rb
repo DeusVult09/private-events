@@ -44,7 +44,7 @@ class EventsController < ApplicationController
     end
   end
 
-  def destroy 
+  def destroy
     @event.destroy
 
     redirect_to events_path, notice: "Event was successfully deleted"
@@ -53,11 +53,10 @@ class EventsController < ApplicationController
 
   private
   def event_params
-    params.expect(event: [:name, :location, :description, :date]) 
+    params.expect(event: [ :name, :location, :description, :date ])
   end
 
-  #def event_params
-    #params.require(:event).permit(:name, :location, :description, :date)
-  #end
-
+  # def event_params
+  # params.require(:event).permit(:name, :location, :description, :date)
+  # end
 end

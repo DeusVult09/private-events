@@ -1,4 +1,4 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def show
@@ -15,8 +15,7 @@ class UserController < ApplicationController
     .where(attendances: { attendee_id: current_user.id, status: "declined" })
 
     @past_events = Event.joins(attendances)
-    .where(attendances: {attendee_id: current_user.id, status: "accepted" })
+    .where(attendances: { attendee_id: current_user.id, status: "accepted" })
     .past
-    
   end
 end

@@ -1,7 +1,7 @@
 class AttendancesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_event, only: [:create]
-  before_action :set_attendance, only: [:accept, :decline, :destroy]
+  before_action :set_event, only: [ :create ]
+  before_action :set_attendance, only: [ :accept, :decline, :destroy ]
   before_action :authorize_creator, only: %i[accept decline]
   before_action :authorize_attendee, only: %i[destroy]
 
@@ -17,7 +17,7 @@ class AttendancesController < ApplicationController
 
   def create
     @attendance = @event.attendances.build(attendee: current_user, status: :pending)
-  
+
     if @attendance.save
       redirect_to user_path(current_user), notice: "You are attending this event!"
     else
@@ -50,5 +50,4 @@ class AttendancesController < ApplicationController
   def set_attendance
     @attendance = Attendance.find(params[:id])
   end
-
 end
