@@ -13,6 +13,10 @@ class UserController < ApplicationController
 
     @declined_events = Event.joins(attendances)
     .where(attendances: { attendee_id: current_user.id, status: "declined" })
+
+    @past_events = Event.joins(attendances)
+    .where(attendances: {attendee_id: current_user.id, status: "accepted" })
+    .past
     
   end
 end
