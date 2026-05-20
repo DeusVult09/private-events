@@ -27,13 +27,13 @@ class AttendancesController < ApplicationController
 
   def accept
     if @attendance.update(status: :accepted)
-      redirect_to events_path, notice: "Accepted"
+      redirect_to user_path(current_user), notice: "Accepted"
     end
   end
 
   def decline
     if @attendance.update(status: :declined)
-      redirect_to events_path, notice: "Declined"
+      redirect_to user_path(current_user), notice: "Declined"
     end
   end
 

@@ -15,10 +15,18 @@
     <p><%= @event.creator.name %></p><br>
     
     <%= link_to "Back to Events", events_path %><br><br>
-
+    
     <% if @event.creator != current_user %>
-       <%= button_to "Attend Event", event_attendances_path(@event), method: :post %>
-    <% end %><br>
+      <% attendance = current_user.attendances.find_by(event: @event) %>
+      
+      <% if attendance.nil? %>
+        <%= button_to "Attend this Event", event_attendances_path(@event), method: :post %>
+      <% else %>
+        <p>You are already attending this event (<%= attendance.status %>)</p>
+      <% end %>
+    <% else %>
+      <p>You created this event</p>
+    <% end %>
 
     <% if @event.creator == current_user %>
       <%= link_to "Edit", edit_event_path(@event) %><br><br>
@@ -26,6 +34,8 @@
       @event, 
       method: :delete, 
       form: { data: { turbo_confirm: "Are you sure?" } } %>
-    <% end %>
+    <% end %><br><br>
+
+    <%= link_to "Add New Event", new_event_path %>
 </div>
 
