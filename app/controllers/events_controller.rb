@@ -52,11 +52,11 @@ class EventsController < ApplicationController
 
 
   private
-  def event_params
-    params.expect(event: [ :name, :location, :description, :date ])
-  end
+  #def event_params
+    #params.expect(event: [ :name, :location, :description, :date ])
+  #end
 
-  # def event_params
-  # params.require(:event).permit(:name, :location, :description, :date)
-  # end
+  def event_params
+    params.require(:event).permit(:name, :location, :description, :date)
+  end
 end

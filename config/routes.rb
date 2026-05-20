@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
   root "events#index"
   resources :events do
-    resources :attendances, only: [ :create, :accept, :decline, :destroy ]
+    resources :attendances, only: [ :create, :destroy ]
   end
+
+  resources :attendances, only: [] do
+    member do
+      patch :accept
+      patch :decline
+     end
+  end
+
   resources :users, only: [ :show ]
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
