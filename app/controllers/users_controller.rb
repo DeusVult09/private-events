@@ -4,17 +4,17 @@ class UsersController < ApplicationController
   def show
     @created_events = current_user.created_events.includes(attendances: :attendee)
 
-    @upcoming_events = Event.joins(attendances)
+    @upcoming_events = Event.joins(:attendances)
     .where(attendances: { attendee_id: current_user.id, status: "accepted" })
     .upcoming
 
-    @pending_events = Event.joins(attendances)
+    @pending_events = Event.joins(:attendances)
     .where(attendances: { attendee_id: current_user.id, status: "pending" })
 
-    @declined_events = Event.joins(attendances)
+    @declined_events = Event.joins(:attendances)
     .where(attendances: { attendee_id: current_user.id, status: "declined" })
 
-    @past_events = Event.joins(attendances)
+    @past_events = Event.joins(:attendances)
     .where(attendances: { attendee_id: current_user.id, status: "accepted" })
     .past
   end

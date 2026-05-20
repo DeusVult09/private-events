@@ -21,7 +21,7 @@
     <% end %><br>
 
     <% if @event.creator == current_user %>
-      <%= link_to "Edit", edit_event_path(@event) %>
+      <%= link_to "Edit", edit_event_path(@event) %><br><br>
       <%= button_to "Delete Event",
       @event, 
       method: :delete, 
