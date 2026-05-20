@@ -27,7 +27,7 @@
 
     <nav>
       <% if user_signed_in? %>
-        <%= link_to "My Events Dashboard", user_path(current_user) %><br><br>
+        <%= link_to "Go to My Dashboard", user_path(current_user) %><br><br>
         <%= button_to "Logout", destroy_user_session_path, method: :delete %>
       <% else %>
         <%= link_to "Login", new_user_session_path %>

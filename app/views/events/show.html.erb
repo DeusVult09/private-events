@@ -14,7 +14,7 @@
     <h3>Created by:</h3>
     <p><%= @event.creator.name %></p><br>
     
-    <%= link_to "Back to Events", events_path %><br>
+    <%= link_to "Back to Events", events_path %><br><br>
 
     <% if @event.creator != current_user %>
        <%= button_to "Attend Event", event_attendances_path(@event), method: :post %>
