@@ -19,27 +19,27 @@ class AttendancesController < ApplicationController
     @attendance = @event.attendances.build(attendee: current_user, status: :pending)
 
     if @attendance.save
-      redirect_to user_path(current_user), notice: "You are attending this event!"
+      redirect_to events_path, notice: "You are attending this event!"
     else
-      redirect_to user_path(current_user), alert: "Something went wrong!"
+      redirect_to events_path, alert: "Something went wrong!"
     end
   end
 
   def accept
     if @attendance.update(status: :accepted)
-      redirect_to user_path(current_user), notice: "Accepted"
+      redirect_to events_path, notice: "Accepted"
     end
   end
 
   def decline
     if @attendance.update(status: :declined)
-      redirect_to user_path(current_user), notice: "Declined"
+      redirect_to events_path, notice: "Declined"
     end
   end
 
   def destroy
     @attendance.destroy
-    redirect_to user_path(current_user), notice: "Attendance record was successfully removed!"
+    redirect_to events_path, notice: "Attendance record was successfully removed!"
   end
 
   private
