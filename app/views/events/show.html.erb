@@ -16,7 +16,7 @@
     
     <%= link_to "Back to Events", events_path %><br>
 
-    <% if @event.attendees.exists?(current_user.id) %>
+    <% if @event.creator != current_user %>
        <%= button_to "Attend Event", event_attendances_path(@event), method: :post %>
     <% end %><br>
 
