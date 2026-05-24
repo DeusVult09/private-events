@@ -222,11 +222,6 @@ bin/dev
 
 ---
 
-## Screenshots
-
-(Add screenshots here)
-
----
 
 ## Author
 
