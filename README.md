@@ -222,7 +222,4 @@ bin/dev
 
 ---
 
-
-## Author
-
 Built by Zara
