@@ -1,6 +1,6 @@
 <div class="events-container">
     <%= link_to "Events", events_path %>
-    
+
     <div class="created-events">
         <h2>My Created Events</h2><br>
 
@@ -53,7 +53,7 @@
                         <%= attendance.status %>
                     </div>
                     <div class="delete-show">
-                        <%= button_to "Cancel Attendance", attendance_path(attendance), method: :delete %>
+                        <%= button_to "Cancel Attendance", event_attendance_path(attendance.event, attendance), method: :delete %>
                     </div>
                   <% end %>
                 <% end %>

@@ -18,9 +18,9 @@
     
     <% if @event.creator != current_user %>
       <% attendance = current_user.attendances.find_by(event: @event) %>
-      
+
       <% if attendance.nil? %>
-        <%= button_to "Attend this Event", event_attendances_path(@event), method: :post %>
+        <%= button_to "Attend this Event", event_path(@event), method: :post %>
       <% else %>
         <p>You are already attending this event (<%= attendance.status %>)</p>
       <% end %>
